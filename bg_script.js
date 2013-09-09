@@ -1,12 +1,18 @@
-chrome.browserAction.setBadgeText({text:'0%'});
+function setBadge(text){
+
+  chrome.browserAction.setBadgeText({text: String(text)+'%'});
+
+}
 
 function updateBadge(resp) {
   x = resp.pos;
   var pos = (x >= 0 && x <= 100 && String(x)) || undefined;
   if(x && pos != undefined && pos != null) {
-    chrome.browserAction.setBadgeText({text:String(pos)+'%'}); 
+    setBadge(pos); 
+  } else if(x > 100) {
+    setBadge(100); 
   } else {
-    chrome.browserAction.setBadgeText({text:'0%'}); 
+    setBadge(0);
   }
 }
 
@@ -26,3 +32,4 @@ chrome.tabs.onSelectionChanged.addListener(
     }
 );
 
+setBadge(0);
