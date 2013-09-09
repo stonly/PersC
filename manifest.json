@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+
+  "name": "PersC",
+  "description": "This extension shows you where you are located on a page as a number from 0 to 100 representing the percentage completed.",
+  "version": "1.0",
+  "permissions": ["tabs"],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*","https://*/*"],
+      "js": ["pos.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["bg_script.js"]
+  },
+  "browser_action": {
+    "default_icon": "pc_icon.png",
+    "default_popup": "pc_popup.html"
+  },
+  "icons": { "16": "pc_16.png",
+           "48": "pc_48.png",
+          "128": "pc_128.png" }
+}
