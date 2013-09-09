@@ -3,8 +3,11 @@ chrome.browserAction.setBadgeText({text:'0%'});
 function updateBadge(resp) {
   x = resp.pos;
   var pos = (x >= 0 && x <= 100 && String(x)) || undefined;
-  if(pos != undefined)
+  if(x && pos != undefined && pos != null) {
     chrome.browserAction.setBadgeText({text:String(pos)+'%'}); 
+  } else {
+    chrome.browserAction.setBadgeText({text:'0%'}); 
+  }
 }
 
 chrome.runtime.onMessage.addListener(
